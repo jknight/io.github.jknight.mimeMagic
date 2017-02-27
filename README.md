@@ -5,7 +5,7 @@ A simple configuration-based library for determining mime types based on file he
 
 This library is light weight with a simple properties file that maps magic numbers to mime/extension.
 
-For a more comprehensive Mime library, see [https://tika.apache.org/](apache tika)
+For a more comprehensive Mime library, see [apache tika](https://tika.apache.org/)
 
 mimeMagic Features:
 
