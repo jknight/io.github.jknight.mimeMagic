@@ -8,7 +8,7 @@ Features:
 * File bytes -> mime (fromHeaderBytes)  
   public MimeType fromHeaderBytes(final byte[] bytes)
 * mime -> extension  
-  public MimeType fromExtension(final String extension)
+  public MimeType fromMime(final String mime)
 * extension -> mime  
   public MimeType fromExtension(final String extension)
 * file name -> mime  

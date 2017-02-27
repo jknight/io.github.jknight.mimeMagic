@@ -15,6 +15,19 @@ public class Mime
         this.mimeTypes = Load.mimeTypes(propertiesFileName);
     }
 
+    public MimeType fromMime(final String mime)
+    {
+        if(mime == null || mime.length() == 0) return MimeType.unknown;
+
+        for(final MimeType mimeType : mimeTypes)
+        {
+            if(mimeType.Mime.equalsIgnoreCase(mime))
+                return mimeType;
+        }
+
+        return MimeType.unknown;
+    }
+
     public MimeType fromFileName(final String fileName)
     {
         String fileExtension = fileName.substring(fileName.lastIndexOf(".") + 1);

@@ -16,28 +16,27 @@ import static org.junit.Assert.*;
 public class MimeTests
 {
     private Mime mime;
+    private Map<String, String> testCases = new HashMap<>();
 
     @Before
     public void before() throws IOException
     {
         this.mime = new Mime();
-    }
 
-    //Load up sample images files and make sure they're detected correctly
-    @Test
-    public void test_files() throws IOException
-    {
-        Map<String, String> testCases = new HashMap<>();
-        testCases.put("gif", "image/gif");
-        testCases.put("tif", "image/tiff");
-        testCases.put("jpg", "image/jpeg");
-        testCases.put("pdf", "application/pdf");
+        this.testCases.put("gif", "image/gif");
+        this.testCases.put("tif", "image/tiff");
+        this.testCases.put("jpg", "image/jpeg");
+        this.testCases.put("pdf", "application/pdf");
         //testCases.put("text-cold", "application/x-cold");
         //testCases.put("mixed-cold", "application/x-cold");
         //testCases.put("dwg", "application/dwg");
+    }
 
+    @Test
+    public void this_fromHeaderBytes() throws IOException
+    {
         File samplesDirectory = new File("src/test/resources/ImageSamples/");
-        for(val entry : testCases.entrySet())
+        for(val entry : this.testCases.entrySet())
         {
             String extension = entry.getKey();
             String expectedMime =  entry.getValue();
@@ -46,34 +45,40 @@ public class MimeTests
 
             System.out.println("testing " + files.size() + " files of type " + extension + " ...");
 
-            test_detect_files(files, expectedMime);
+            for(File file : files)
+            {
+                byte[] bytes = FileUtils.readFileToByteArray(file);
+                val mimeType = this.mime.fromHeaderBytes(bytes);
+
+                assertEquals(expectedMime, mimeType.Mime);
+            }
         }
     }
 
-    private void test_detect_files(Collection<File> files, String expectedMime) throws IOException
+    @Test
+    public void from_mime()
     {
-        for(File file : files)
+        for(val entry : testCases.entrySet())
         {
-            byte[] bytes = FileUtils.readFileToByteArray(file);
-            val mimeType = this.mime.fromHeaderBytes(bytes);
-
-            assertEquals(expectedMime, mimeType.Mime);
+            String mime = entry.getValue();
+            MimeType mimeType = this.mime.fromMime(mime);
+            assertEquals(mime, mimeType.Mime);
         }
     }
 
     @Test
     public void from_extension()
     {
-        Map<String, String> testCases = new HashMap<>();
-        testCases.put("gif", "image/gif");
-        testCases.put("tif", "image/tiff");
-        testCases.put("jpg", "image/jpeg");
-        testCases.put("pdf", "application/pdf");
         for(val entry : testCases.entrySet())
         {
             MimeType mimeType = this.mime.fromExtension(entry.getKey());
+
             assertEquals(entry.getValue(), mimeType.Mime);
-            assertNotNull(mimeType.MagicBytes);
+
+            if(!mimeType.equals(MimeType.unknown))
+                assertNotNull(mimeType.MagicBytes);
+            else
+                assertNull(mimeType.MagicBytes);
         }
     }
 
@@ -102,7 +107,7 @@ public class MimeTests
     @Test
     public void test_that_ascii_is_not_detected_yet() throws IOException
     {
-         byte[] bytes = FileUtils.readFileToByteArray(new File("src/test/resources/ImageSamples/is_a_text.txt"));
+        byte[] bytes = FileUtils.readFileToByteArray(new File("src/test/resources/ImageSamples/is_a_text.txt"));
 
         val mimeType = this.mime.fromHeaderBytes(bytes);
 
