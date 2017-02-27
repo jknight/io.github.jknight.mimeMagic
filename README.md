@@ -3,7 +3,7 @@
 
 A simple configuration-based library for determining mime types based on file header bytes.
 
-This library is light weight with a simple properties file that maps magic numbers to mime/extension.
+This library is light weight with a simple [properties file](src/main/resources/mime.properties) that maps magic numbers to mime/extension.
 
 For a more comprehensive Mime library, see [apache tika](https://tika.apache.org/)
 
