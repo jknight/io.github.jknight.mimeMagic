@@ -55,7 +55,7 @@ public class Mime
     }
 
 
-   private boolean arrayStartsWith(final byte[] target, final byte[] test)
+    private boolean arrayStartsWith(final byte[] target, final byte[] test)
     {
         if (target.length < test.length) return false;
 
@@ -64,7 +64,4 @@ public class Mime
 
         return true;
     }
-
-
-
 }

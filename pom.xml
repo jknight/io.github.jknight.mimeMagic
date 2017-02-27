@@ -6,8 +6,7 @@
 
     <groupId>io.github.jknight</groupId>
     <artifactId>mimeMagic</artifactId>
-    <version>1.0-SNAPSHOT</version>
-
+    <version>1.0</version>
 
     <dependencies>
         <!-- for val keyword, @Log4j2, etc. -->
