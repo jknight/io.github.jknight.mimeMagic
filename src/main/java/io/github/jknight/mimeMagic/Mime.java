@@ -54,7 +54,6 @@ public class Mime
         return MimeType.unknown;
     }
 
-
     private boolean arrayStartsWith(final byte[] target, final byte[] test)
     {
         if (target.length < test.length) return false;
