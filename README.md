@@ -5,6 +5,11 @@ A simple configuration-based library for determining mime types based on file he
 
 Features:
 
-* File bytes -> mime 
-* mime -> extension
-* extension -> mime
+* File bytes -> mime (fromHeaderBytes)  
+  public MimeType fromHeaderBytes(final byte[] bytes)
+* mime -> extension  
+  public MimeType fromExtension(final String extension)
+* extension -> mime  
+  public MimeType fromExtension(final String extension)
+* file name -> mime  
+  public MimeType fromFileName(final String fileName)
