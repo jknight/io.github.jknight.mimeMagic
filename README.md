@@ -17,3 +17,6 @@ mimeMagic Features:
   public MimeType fromExtension(final String extension)
 * file name -> mime  
   public MimeType fromFileName(final String fileName)
+
+## Install:
+ mvn install:install-file -Dfile=mimeMagic-1.0.jar -DgroupId=io.github.jknight -DartifactId=mimeMagic -Dversion=1.0  -Dpackaging=Jar
