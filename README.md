@@ -1,6 +1,6 @@
 # io.github.jknight.mimeMagic
 
-<<NO LONGER IN USE>>
+**NO LONGER IN USE**
 Use a stripped down version of [Apache Tikka](https://tika.apache.org/) instead
 
 ---
