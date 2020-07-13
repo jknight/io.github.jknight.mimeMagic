@@ -1,5 +1,9 @@
 # io.github.jknight.mimeMagic
 
+<<NO LONGER IN USE>>
+Use a stripped down version of [Apache Tikka](https://tika.apache.org/) instead
+
+---
 
 A simple configuration-based library for determining mime types based on file header bytes.
 
